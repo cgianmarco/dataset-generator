@@ -9,7 +9,7 @@ images = [img2]
 
 
 trasformer = removeWhiteBackgroundTrasformer().then(addBackgroundAllPositionsTrasformer(img, 1))
-trasformer = CompositeTrasformer(addBackgroundAllPositionsTrasformer(img, 200))
+trasformer = addBackgroundRandomPositionsTrasformer(img, 10)
 
 
 test(images, trasformer)

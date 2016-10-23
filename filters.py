@@ -76,6 +76,8 @@ class addBackgroundTrasformer(Trasformer):
 		img.paste(value, (0, 0), value)
 		return img
 
+
+# image -> image array
 class addBackgroundAllPositionsTrasformer(Trasformer):
 
 	def __init__(self, background, step):
@@ -87,16 +89,36 @@ class addBackgroundAllPositionsTrasformer(Trasformer):
 		y = 0
 
 		results = []
-
 		while x <= (self.background.width - value.width):
-			print "x = " + str(x)
+			# print "x = " + str(x)
 			y = 0
 			while y <= (self.background.height - value.height):
-				print "y = " + str(y)
+				# print "y = " + str(y)
 				img = self.background.copy()				
 				img.paste(value, (x, y), value)
 				results.append(img.copy())
-				y = y + self.step
-			
+				y = y + self.step	
 			x = x + self.step
+		return results
+
+
+# image -> image array
+class addBackgroundRandomPositionsTrasformer(Trasformer):
+
+	def __init__(self, background, n):
+		self.background = background
+		self.n = n
+
+	def trasform_single(self, value):
+		import random
+
+		results = []
+
+		for i in range(self.n):
+			x = random.randint(0, self.background.width - value.width)
+			y = random.randint(0, self.background.height - value.height)
+			img = self.background.copy()				
+			img.paste(value, (x, y), value)
+			results.append(img.copy())
+
 		return results
