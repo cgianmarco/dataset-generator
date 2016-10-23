@@ -1,4 +1,6 @@
-from filters import *
+from matplotlib import pyplot as plt
+import math
+
 
 
 """
@@ -44,15 +46,4 @@ def test(inputs, trasformer):
 	plt.show() 
 
 
-img = Image.open("test.jpg").convert('RGBA')
-img2 = Image.open("tomato.jpg").convert('RGBA')
-# background = Image.open("test.jpg").convert('RGBA')
 
-
-images = [img, img2]
-
-
-# trasformer = CompositeTrasformer(horizontalFlipTrasformer(), verticalFlipTrasformer())
-# trasformer = removeWhiteBackgroundTrasformer().then(douleImageTrasformer())
-trasformer = CompositeTrasformer(horizontalFlipTrasformer(),verticalFlipTrasformer()).then(douleImageTrasformer())
-test(images, trasformer)

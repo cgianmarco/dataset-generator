@@ -3,9 +3,6 @@
 import Image
 import numpy as np
 
-from matplotlib import pyplot as plt
-import math
-
 
 """
  Every filter must extend this class
