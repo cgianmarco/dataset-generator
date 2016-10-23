@@ -105,7 +105,7 @@ class horizontalFlipTrasformer(Trasformer):
 		return value.transpose(Image.FLIP_LEFT_RIGHT)
 
 
-# image -> 2d image array
+# image -> image array
 class douleImageTrasformer(Trasformer):
 
 	def trasform_single(self, value):
@@ -142,7 +142,7 @@ class addBackgroundTrasformer(Trasformer):
 
 """
  Execute filter on given value
- 
+
 """
 def execute(value, t):
 	results = t.trasform(value)
