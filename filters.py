@@ -39,6 +39,7 @@ class verticalFlipTrasformer(Trasformer):
 class horizontalFlipTrasformer(Trasformer):
 
 	def trasform_single(self, value):
+		print "eseguito"
 		return value.transpose(Image.FLIP_LEFT_RIGHT)
 
 
@@ -73,4 +74,29 @@ class addBackgroundTrasformer(Trasformer):
 	def trasform_single(self, value):
 		img = self.background.copy()
 		img.paste(value, (0, 0), value)
-		return img 
+		return img
+
+class addBackgroundAllPositionsTrasformer(Trasformer):
+
+	def __init__(self, background, step):
+		self.background = background
+		self.step = step
+
+	def trasform_single(self, value):
+		x = 0
+		y = 0
+
+		results = []
+
+		while x <= (self.background.width - value.width):
+			print "x = " + str(x)
+			y = 0
+			while y <= (self.background.height - value.height):
+				print "y = " + str(y)
+				img = self.background.copy()				
+				img.paste(value, (x, y), value)
+				results.append(img.copy())
+				y = y + self.step
+			
+			x = x + self.step
+		return results

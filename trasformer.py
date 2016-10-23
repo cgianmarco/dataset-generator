@@ -13,10 +13,11 @@ class Trasformer:
 	def trasform(self, value):
 		res = []
 		for x in value:
-			if isinstance(self.trasform_single(x), list):
-				res.extend(self.trasform_single(x))
+			result = self.trasform_single(x)
+			if isinstance(result, list):
+				res.extend(result)
 			else:
-				res.append(self.trasform_single(x))
+				res.append(result)
 		return res
 
 

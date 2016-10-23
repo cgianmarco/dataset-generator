@@ -18,8 +18,6 @@ def add_images_graph(title, images):
 	fig = plt.figure()
 	fig.canvas.set_window_title(title)
 
-	plt.axis('off')
-
 	image_number = len(images)
 
 	x = int(math.sqrt(image_number))
