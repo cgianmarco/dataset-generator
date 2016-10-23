@@ -64,6 +64,21 @@ class CompositeTrasformer(Trasformer):
 		return results
 
 
+class MultipleTrasformer(Trasformer):
+
+	def __init__(self, trasformers):
+		self.trasformers = trasformers
+
+	def trasform(self, value):
+		results = []
+
+		for trasformer in self.trasformers:
+
+			results.extend(trasformer.trasform(value))
+
+		return results
+
+
 
 
 

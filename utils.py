@@ -39,9 +39,10 @@ def add_images_graph(title, images):
 """
 def test(inputs, trasformer):
 	processed_img = execute(inputs, trasformer)
-	add_images_graph("Inputs", inputs)
-	add_images_graph("Processed", processed_img)
-	plt.show() 
+	# add_images_graph("Inputs", inputs)
+	# add_images_graph("Processed", processed_img)
+	# plt.show()
+	return processed_img
 
 
 
