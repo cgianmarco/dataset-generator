@@ -3,6 +3,9 @@
 import Image
 import numpy as np
 
+from matplotlib import pyplot as plt
+import math
+
 
 """
  Every filter must extend this class
@@ -149,39 +152,57 @@ def execute(value, t):
 	return results
 
 
+
+def add_images_graph(title, images):
+
+	fig = plt.figure()
+	fig.canvas.set_window_title(title)
+
+	plt.axis('off')
+
+	image_number = len(images)
+
+	x = int(math.sqrt(image_number))
+	y = x
+
+	while x*y < image_number:
+		y = y + 1
+
+	for i in range(image_number):
+		graph = fig.add_subplot(x,y,i+1)
+		graph.imshow(images[i])
+
+
+
+
 """
  Show input images and output images of trasformer
 
- WORK IN PROGRESS!
-
 """
-def test(img, trasformer):
-	from matplotlib import pyplot as plt
-	processed_img = execute(img, trasformer)
-	plt.subplot(311),plt.imshow(img[0],'gray'),plt.title('ORIGINAL')
-	print len(processed_img)
-	plt.subplot(312),plt.imshow(processed_img[0],'gray'),plt.title('TRASFORMED')
-	plt.subplot(313),plt.imshow(processed_img[1],'gray'),plt.title('TRASFORMED')
-	# plt.subplot(234),plt.imshow(processed_img[2],'gray'),plt.title('TRASFORMED')
-	# plt.subplot(235),plt.imshow(processed_img[3],'gray'),plt.title('TRASFORMED')
+def test(inputs, trasformer):
+	processed_img = execute(inputs, trasformer)
+	add_images_graph("Inputs", inputs)
+	add_images_graph("Processed", processed_img)
 	plt.show()
 
 
-
-
-
-img = Image.open("contattaci.png").convert('RGBA')
-img2 = Image.open("iphone.png").convert('RGBA')
-background = Image.open("test.jpg").convert('RGBA')
+img = Image.open("test.jpg").convert('RGBA')
+img2 = Image.open("tomato.jpg").convert('RGBA')
+# background = Image.open("test.jpg").convert('RGBA')
 
 
 images = [img, img2]
 
-trasformer = CompositeTrasformer(horizontalFlipTrasformer(), verticalFlipTrasformer())
-trasformer = removeWhiteBackgroundTrasformer().then(douleImageTrasformer())
 
-
+# trasformer = CompositeTrasformer(horizontalFlipTrasformer(), verticalFlipTrasformer())
+# trasformer = removeWhiteBackgroundTrasformer().then(douleImageTrasformer())
+trasformer = CompositeTrasformer(horizontalFlipTrasformer(),verticalFlipTrasformer()).then(douleImageTrasformer())
 test(images, trasformer)
+
+
+# test(images, trasformer)
+
+
 
 
 
