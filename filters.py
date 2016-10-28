@@ -141,18 +141,3 @@ class RotateTrasformer(Trasformer):
 			results.append(img)
 			angle = angle + 10
 		return results
-
-<<<<<<< HEAD
-		
-=======
-
-
-
-
-
-
-		
-
-
-
->>>>>>> 9063cf526bf32a63420bb4ddae02d5c1304cec23
