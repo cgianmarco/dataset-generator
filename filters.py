@@ -122,3 +122,24 @@ class addBackgroundRandomPositionsTrasformer(Trasformer):
 			results.append(img.copy())
 
 		return results
+
+
+# image -> image array
+class RotateTrasformer(Trasformer):
+
+	def __init__(self, max_angle):
+		self.max_angle = max_angle
+
+	def trasform_single(self, value):
+
+		angle = 0
+
+		results = []
+		while angle <= self.max_angle:
+			img = value.copy()				
+			img = img.rotate(angle)
+			results.append(img)
+			angle = angle + 10
+		return results
+
+		
