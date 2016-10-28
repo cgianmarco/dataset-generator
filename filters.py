@@ -39,7 +39,6 @@ class verticalFlipTrasformer(Trasformer):
 class horizontalFlipTrasformer(Trasformer):
 
 	def trasform_single(self, value):
-		print "eseguito"
 		return value.transpose(Image.FLIP_LEFT_RIGHT)
 
 
