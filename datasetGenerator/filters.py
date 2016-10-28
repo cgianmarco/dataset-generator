@@ -1,6 +1,5 @@
 from trasformer import * 
-import utils
-
+from utils import *
 # string -> string
 class capitalizedTrasformer(Trasformer):
 
